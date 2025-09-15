@@ -35,7 +35,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 set(CMAKE_MACOSX_RPATH ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # enable compiler warnings globally
 # derived from https://foonathan.net/blog/2018/10/17/cmake-warnings.html
@@ -111,6 +111,7 @@ target_sources(python
     src/tdigest_wrapper.cpp
     src/vector_of_kll.cpp
     src/py_serde.cpp
+    src/ddsketch.cpp
 )
 
 cmake_policy(SET CMP0097 NEW)

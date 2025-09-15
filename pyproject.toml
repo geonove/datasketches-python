@@ -19,7 +19,9 @@
 requires = ["wheel",
             "setuptools >= 30.3.0",
             "numpy",
-            "nanobind >= 1.6"]
+            "nanobind >= 1.6",
+            "cmake >= 3.18",
+            "ninja"]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
