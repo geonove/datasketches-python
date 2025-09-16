@@ -111,14 +111,14 @@ target_sources(python
     src/tdigest_wrapper.cpp
     src/vector_of_kll.cpp
     src/py_serde.cpp
-    src/ddsketch.cpp
+    src/ddsketch_wrapper.cpp
 )
 
 cmake_policy(SET CMP0097 NEW)
 include(ExternalProject)
 ExternalProject_Add(datasketches
-  GIT_REPOSITORY https://github.com/apache/datasketches-cpp.git
-  GIT_TAG 5.2.0
+  GIT_REPOSITORY https://github.com/geonove/datasketches-cpp.git
+  GIT_TAG geonove/pacs-ddsketch
   GIT_SHALLOW true
   GIT_SUBMODULES ""
   INSTALL_DIR /tmp/datasketches

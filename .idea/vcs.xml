@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/build/temp.macosx-15.5-arm64-cpython-311/datasketches-prefix/src/datasketches" vcs="Git" />
-  </component>
-</project>
