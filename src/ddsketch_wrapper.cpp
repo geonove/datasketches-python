@@ -21,15 +21,13 @@
 #include <nanobind/stl/string.h>
 #include <sstream>
 
-#include "store.hpp"
 #include "logarithmic_mapping.hpp"
-#include "sparse_store.hpp"
 #include "collapsing_highest_dense_store.hpp"
 #include "ddsketch.hpp"
 
 namespace nb = nanobind;
 
-template<datasketches::store_concept S, class M>
+template<class S, class M>
 void bind_ddsketch(nb::module_ &m, const char* name) {
   using namespace datasketches;
 
@@ -88,6 +86,6 @@ void bind_ddsketch(nb::module_ &m, const char* name) {
 }
 
 void init_ddsketch(nb::module_ &m) {
-  bind_ddsketch<datasketches::SparseStore<std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch");
+  // bind_ddsketch<datasketches::SparseStore<std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch");
   bind_ddsketch<datasketches::CollapsingHighestDenseStore<1024, std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch_dense");
 }
