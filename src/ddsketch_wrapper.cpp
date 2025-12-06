@@ -19,6 +19,7 @@
 
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/string.h>
+#include <nanobind/stl/vector.h>
 #include <sstream>
 
 #include "logarithmic_mapping.hpp"
@@ -80,6 +81,32 @@ void bind_ddsketch(nb::module_ &m, const char* name) {
         return nb::bytes(s.data(), s.size());
       },
       "Serialize a sketch from Python bytes")
+    .def(
+      "get_pmf", 
+      [](DDSketch<S, M>& sk, std::vector<double>& split_points) {
+        return sk.get_PMF(split_points.data(), split_points.size());
+      }, 
+      nb::arg("split_points"),
+      "Returns an approximation to the Cumulative Distribution Function (CDF), which is the "
+      "cumulative analog of the PMF, of the input stream given a set of split points (values).\n"
+      "If the sketch is empty this returns an empty vector.\n"
+      "split_points is an array of m unique, monotonically increasing float values "
+      "that divide the real number line into m+1 consecutive disjoint intervals.\n"
+      "It is not necessary to include either the min or max values in these split points."
+    )
+    .def(
+      "get_pmf", 
+      [](DDSketch<S, M>& sk, std::vector<double>& split_points) {
+        return sk.get_PMF(split_points.data(), split_points.size());
+      }, 
+      nb::arg("split_points"),
+      "Returns an approximation to the Cumulative Distribution Function (CDF), which is the "
+      "cumulative analog of the PMF, of the input stream given a set of split points (values).\n"
+      "If the sketch is empty this returns an empty vector.\n"
+      "split_points is an array of m unique, monotonically increasing float values "
+      "that divide the real number line into m+1 consecutive disjoint intervals.\n"
+      "It is not necessary to include either the min or max values in these split points."
+    )
   ;
 
 
@@ -87,5 +114,5 @@ void bind_ddsketch(nb::module_ &m, const char* name) {
 
 void init_ddsketch(nb::module_ &m) {
   // bind_ddsketch<datasketches::SparseStore<std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch");
-  bind_ddsketch<datasketches::CollapsingHighestDenseStore<1024, std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch_dense");
+  bind_ddsketch<datasketches::CollapsingHighestDenseStore<4096, std::allocator<double>>, datasketches::LogarithmicMapping>(m, "ddsketch_dense");
 }

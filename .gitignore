@@ -15,6 +15,7 @@
 # Python created files
 .eggs/
 .tox/
+.venv/
 dist/
 datasketches.egg-info/
 datasketches/__pycache__/
